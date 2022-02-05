@@ -6,13 +6,18 @@ const connectDB = require('./config/db')
 
 require('dotenv').config()
 const user = require('./routes/user')
+const auth = require('./routes/auth')
 const app = express()
 
 connectDB()
 
+app.use(cors())
 app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
+app.use("/auth", auth)
 app.use("/user", user)
+
 
 const PORT = process.env.PORT || 3010
 app.listen(PORT, (req, res) => {
