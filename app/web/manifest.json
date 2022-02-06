@@ -1,6 +1,6 @@
 {
-    "name": "app",
-    "short_name": "app",
+    "name": "karpull",
+    "short_name": "karpull",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
