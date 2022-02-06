@@ -16,9 +16,23 @@ const userSchema = new Schema({
         type: String,
         require: true
     },
+    latitude: {
+        type: Number,
+        default: 0
+    },
+    longitude: {
+        type: Number,
+        default: 0
+    },
     puller: {
         type: Boolean,
         require: true
+    },
+    partner: {
+        type: String
+    },
+    here: {
+        type: Boolean
     }
 })
 
