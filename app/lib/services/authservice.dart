@@ -47,4 +47,21 @@ class AuthService {
       }
     }
   }
+
+  getUser(token) async {
+    String url = 'http://localhost:3010/user/';
+    var jsonResponse;
+    Map<String, String> requestHeaders = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": "Bearer $token",
+    };
+    var res = await http.get(Uri.parse(url), headers: requestHeaders);
+    if (res.statusCode == 200) {
+      jsonResponse = json.decode(res.body);
+      if (jsonResponse != null) {
+        return jsonResponse;
+      }
+    }
+  }
 }

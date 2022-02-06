@@ -16,15 +16,16 @@ class _MainScreenState extends State<MainScreen> {
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              RaisedButton(
-                child: Text('Get User Data'),
-                color: Colors.yellow,
-                onPressed: () async {
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  String? stringValue = prefs.getString('token');
-                  print(stringValue);
-                },
-              ),
+          RaisedButton(
+            child: Text('Get User Data'),
+            color: Colors.yellow,
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              String? token = prefs.getString('token');
+              var user = await AuthService().getUser(token);
+              print(user);
+            },
+          ),
         ]));
   }
 }
