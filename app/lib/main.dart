@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class LocationApp extends StatefulWidget {
-  const LocationApp({Key? key}) : super(key: key);
+  // const LocationApp({Key? key}) : super(key: key);
 
   @override
   _LocationAppState createState() => _LocationAppState();
@@ -29,9 +28,8 @@ class _LocationAppState extends State<LocationApp> {
   var locationMessage = "";
 
   void getCurrentLocation() async {
-    var position = await Geoposition()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    var lastPosition = await GeoLocator().getLastKnownPosition();
+    var position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    var lastPosition = await Geolocator().getLastKnownPosition();
 
     setState(() {
       locationMessage = "$position.latitude, $position.longitude";
@@ -49,15 +47,15 @@ class _LocationAppState extends State<LocationApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Icon(
+            Icon(
               Icons.location_on,
               size: 46,
               color: Colors.yellow,
             ),
-            const SizedBox(
+            SizedBox(
               height: 10.0,
             ),
-            const Text(
+            Text(
               'Get user location',
               style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
