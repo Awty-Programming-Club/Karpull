@@ -27,9 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
               margin: EdgeInsets.all(5.0),
               decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
               width: MediaQuery.of(context).size.width * 0.8,
-              child: TextField(
+              child: TextField(style: TextStyle(color : Color.fromARGB(255, 255, 199, 0)),
                     textAlign: TextAlign.center,
-                  decoration: InputDecoration(labelText: 'Username', border: OutlineInputBorder(), fillColor: Color.fromARGB(255, 56, 47, 14)),
+                    
+                  decoration: InputDecoration(labelText: 'Username', border: OutlineInputBorder(), labelStyle: TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
                   onChanged: (val) {
                     username = val;
                   }),
@@ -42,9 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
               width: MediaQuery.of(context).size.width * 0.8,
               child: Center(
                 child: TextField(
+                  style: TextStyle(color : Color.fromARGB(255, 255, 199, 0)),
                     textAlign: TextAlign.center,
                     obscureText: true,
-                    decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+                    decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder(), labelStyle: TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
                     onChanged: (val) {
                       password = val;
                     }),

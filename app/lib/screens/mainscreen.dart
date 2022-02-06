@@ -42,15 +42,15 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  @override
-  void initState() {
-    Timer.periodic(Duration(seconds: 5), (Timer timer) {
-      if (user['partner'] != null) {
-        sendLocation();
-      }
-    });
-    super.initState();
-  }
+  //@override
+  //void initState() {
+  //   Timer.periodic(Duration(seconds: 5), (Timer timer) {
+  //     if (user['partner'] != null) {
+  //       sendLocation();
+  //     }
+  //   });
+  //   super.initState();
+  // }
 
   var partnerUsername;
 
