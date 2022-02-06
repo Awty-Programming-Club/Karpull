@@ -59,38 +59,43 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     getUser();
     return Scaffold(
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-            Widget>[
-      if (user == null || (user['partner'] == null && (user['puller'] == true)))
-        (Column(children: [
-          TextField(
-              decoration: InputDecoration(labelText: 'Partner Username'),
-              onChanged: (val) {
-                setState(() {
-                  partnerUsername = val;
-                });
-              }),
-          RaisedButton(
-            child: Text("Submit"),
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              String? token = prefs.getString('token');
-              await AuthService().setPartner(partnerUsername, token, context);
-            },
-          )
-        ])),
-      if (user != null && user['partner'] != null)
-        (Column(children: [
-          Text(here.toString()),
-          Text(distance.toString() + "m")
-        ])),
-      RaisedButton(
-          child: Text("Back"),
-          color: Colors.yellow,
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LoginScreen()));
-          }),
-    ]));
+        body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              if (user == null ||
+                  (user['partner'] == null && (user['puller'] == true)))
+                (Column(children: [
+                  TextField(
+                      decoration:
+                          InputDecoration(labelText: 'Partner Username'),
+                      onChanged: (val) {
+                        setState(() {
+                          partnerUsername = val;
+                        });
+                      }),
+                  RaisedButton(
+                    child: Text("Submit"),
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      String? token = prefs.getString('token');
+                      await AuthService()
+                          .setPartner(partnerUsername, token, context);
+                    },
+                  )
+                ])),
+              if (user != null && user['partner'] != null)
+                (Column(children: [
+                  Text(here.toString()),
+                  Text(distance.toString() + "m")
+                ])),
+              RaisedButton(
+                  child: Text("Back"),
+                  color: Colors.yellow,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                  }),
+            ]));
   }
 }
