@@ -8,8 +8,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/mainscreen.dart';
 
-// var serverURL = '192.168.1.255';
-var serverURL = 'localhost';
+//ANDROID
+var serverURL = '10.0.2.2';
+//APPLE
+// var serverURL = 'localhost';
 
 class AuthService {
   login(username, password, context) async {
