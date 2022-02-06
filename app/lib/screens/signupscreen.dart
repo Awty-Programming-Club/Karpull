@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,17 +91,26 @@ class _SignupScreenState extends State<SignupScreen> {
                   }),
             ),
           ),
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-            child: Switch(
-              value: puller,
-              onChanged: (value) {
-                setState(() {
-                  puller = value;
-                });
-              },
-              activeTrackColor: Colors.lightGreenAccent,
-              activeColor: Colors.green,
+          Center(
+            child: Container(
+              margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Pulled", style: TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                  Switch(
+                    value: puller,
+                    onChanged: (value) {
+                      setState(() {
+                        puller = value;
+                      });
+                    },
+                    activeTrackColor: Colors.lightGreenAccent,
+                    activeColor: Colors.green,
+                  ),
+                  Text("Puller", style: TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 10.0),
