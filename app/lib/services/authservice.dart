@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/mainscreen.dart';
 
-// var serverURL = '10.0.2.2';
+// var serverURL = '192.168.1.255';
 var serverURL = 'localhost';
 
 class AuthService {

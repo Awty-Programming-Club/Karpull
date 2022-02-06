@@ -16,8 +16,21 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   var username, password, token;
 
+  // void getUser(context) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   String? previousToken = prefs.getString('token');
+  //   if (previousToken != null && previousToken != "") {
+  //     var user = await AuthService().getUser(token);
+  //     if (user != null) {
+  //       Navigator.push(
+  //           context, MaterialPageRoute(builder: (context) => MainScreen()));
+  //     }
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    // getUser(context);
     return Scaffold(
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,

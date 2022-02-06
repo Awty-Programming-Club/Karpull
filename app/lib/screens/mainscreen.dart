@@ -22,6 +22,10 @@ class _MainScreenState extends State<MainScreen> {
   void getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
+    if (user != null) {
+      return;
+    }
+    ;
     var tempUser = await AuthService().getUser(token);
     setState(() {
       user = tempUser;
@@ -42,15 +46,15 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  //@override
-  //void initState() {
-  //   Timer.periodic(Duration(seconds: 5), (Timer timer) {
-  //     if (user['partner'] != null) {
-  //       sendLocation();
-  //     }
-  //   });
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    Timer.periodic(Duration(seconds: 5), (Timer timer) {
+      if (user['partner'] != null) {
+        sendLocation();
+      }
+    });
+    super.initState();
+  }
 
   var partnerUsername;
 
@@ -58,43 +62,40 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     getUser();
     return Scaffold(
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              if (user == null ||
-                  (user['partner'] == null && (user['puller'] == true)))
-                (Column(children: [
-                  TextField(
-                      decoration:
-                          InputDecoration(labelText: 'Partner Username'),
-                      onChanged: (val) {
-                        setState(() {
-                          partnerUsername = val;
-                        });
-                      }),
-                  RaisedButton(
-                    child: Text("Submit"),
-                    onPressed: () async {
-                      SharedPreferences prefs =
-                          await SharedPreferences.getInstance();
-                      String? token = prefs.getString('token');
-                      await AuthService()
-                          .setPartner(partnerUsername, token, context);
-                    },
-                  )
-                ])),
-              if (user != null && user['partner'] != null)
-                (Column(children: [
-                  Text(here.toString()),
-                  Text(distance.toString() + "m")
-                ])),
-              RaisedButton(
-                  child: Text("Back"),
-                  color: Colors.yellow,
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
-                  }),
-            ]));
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+            Widget>[
+      if (user == null || (user['partner'] == null && (user['puller'] == true)))
+        (Column(children: [
+          TextField(
+              decoration: InputDecoration(labelText: 'Partner Username'),
+              onChanged: (val) {
+                setState(() {
+                  partnerUsername = val;
+                });
+              }),
+          RaisedButton(
+            child: Text("Submit"),
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              String? token = prefs.getString('token');
+              await AuthService().setPartner(partnerUsername, token, context);
+            },
+          )
+        ])),
+      if (user != null && user['partner'] != null)
+        (Column(children: [
+          Text(here.toString()),
+          Text(distance.toString() + "m")
+        ])),
+      RaisedButton(
+          child: Text("Back"),
+          color: Colors.yellow,
+          onPressed: () {
+            // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+            // sharedPreferences.setString("token", "");
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
+          }),
+    ]));
   }
 }
