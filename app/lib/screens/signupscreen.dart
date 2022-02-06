@@ -60,23 +60,23 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Text('Create Account'),
             color: Colors.yellow,
             onPressed: () {
-              AuthService()
-                  .createUser(name, username, password, confirm, puller, context)
-                  .then((val) async {
-                if (val.data['success']) {
-                  token = val.data['token'];
-                  final prefs = await SharedPreferences.getInstance();
-                  prefs.setString('token', token);
-                  Fluttertoast.showToast(
-                      msg: 'Logged In',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                }
-              });
+              AuthService().createUser(
+                  name, username, password, confirm, puller, context);
+              // .then((val) async {
+              // if (val.data['success']) {
+              //   token = val.data['token'];
+              //   final prefs = await SharedPreferences.getInstance();
+              //   prefs.setString('token', token);
+              //   Fluttertoast.showToast(
+              //       msg: 'Logged In',
+              //       toastLength: Toast.LENGTH_SHORT,
+              //       gravity: ToastGravity.BOTTOM,
+              //       timeInSecForIosWeb: 1,
+              //       backgroundColor: Colors.green,
+              //       textColor: Colors.white,
+              //       fontSize: 16.0);
+              // }
+              // }
             },
           ),
           RaisedButton(

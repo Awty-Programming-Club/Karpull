@@ -39,19 +39,19 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Colors.yellow,
             onPressed: () {
               AuthService().login(username, password, context).then((val) async {
-                if (val.data['success']) {
-                  token = val.data['token'];
-                  final prefs = await SharedPreferences.getInstance();
-                  prefs.setString('token', token);
-                  Fluttertoast.showToast(
-                      msg: 'Logged In',
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.BOTTOM,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.green,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                }
+                // if (val.data['success']) {
+                //   token = val.data['token'];
+                //   final prefs = await SharedPreferences.getInstance();
+                //   prefs.setString('token', token);
+                //   Fluttertoast.showToast(
+                //       msg: 'Logged In',
+                //       toastLength: Toast.LENGTH_SHORT,
+                //       gravity: ToastGravity.BOTTOM,
+                //       timeInSecForIosWeb: 1,
+                //       backgroundColor: Colors.green,
+                //       textColor: Colors.white,
+                //       fontSize: 16.0);
+                // }
               });
             },
           ),
