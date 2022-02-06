@@ -15,8 +15,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   var user;
-  var here = false;
-  var distance = 0;
+  var here = true;
+  var distance = 10;
   Timer? timer;
 
   void getUser() async {
@@ -46,15 +46,15 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  @override
-  void initState() {
-    Timer.periodic(Duration(seconds: 5), (Timer timer) {
-      if (user['partner'] != null) {
-        sendLocation();
-      }
-    });
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   Timer.periodic(Duration(seconds: 5), (Timer timer) {
+  //     if (user['partner'] != null) {
+  //       sendLocation();
+  //     }
+  //   });
+  //   super.initState();
+  // }
 
   var partnerUsername;
 
@@ -65,28 +65,74 @@ class _MainScreenState extends State<MainScreen> {
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
             Widget>[
       if (user == null || (user['partner'] == null && (user['puller'] == true)))
-        (Column(children: [
-          TextField(
-              decoration: InputDecoration(labelText: 'Partner Username'),
-              onChanged: (val) {
-                setState(() {
-                  partnerUsername = val;
-                });
-              }),
-          RaisedButton(
-            child: Text("Submit"),
-            onPressed: () async {
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              String? token = prefs.getString('token');
-              await AuthService().setPartner(partnerUsername, token, context);
-            },
-          )
-        ])),
+        Center(
+          child: (Column(children: [
+            TextField(
+                decoration: InputDecoration(labelText: 'Partner Username'),
+                onChanged: (val) {
+                  setState(() {
+                    partnerUsername = val;
+                  });
+                }),
+            RaisedButton(
+              child: Text("Submit"),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                String? token = prefs.getString('token');
+                await AuthService().setPartner(partnerUsername, token, context);
+              },
+            )
+          ])),
+        ),
       if (user != null && user['partner'] != null)
-        (Column(children: [
-          Text(here.toString()),
-          Text(distance.toString() + "m")
-        ])),
+        Center(
+          child: (Column(children: [
+            Container(
+              margin: EdgeInsets.all(5),
+              child: Container(
+                child: here
+                    ? Center(
+                        child: Text(
+                          "Here",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 21, 20, 1),
+                            fontSize: 30,
+                          ),
+                        ),
+                      )
+                    : Center(
+                        child: Text(
+                          "Approaching",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 199, 0),
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                width: MediaQuery.of(context).size.width * 0.6,
+                height: MediaQuery.of(context).size.height * 0.6,
+                decoration: new BoxDecoration(
+                  color: here
+                      ? Color.fromARGB(255, 255, 199, 0)
+                      : Color.fromARGB(255, 21, 20, 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color:
+                          Color.fromARGB(255, 255, 212, 58), //color of shadow
+                      spreadRadius: 5, //spread radius
+                      blurRadius: 7, // blur radius
+                    )
+                  ],
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.all(5),
+                child: Text(distance.toString() + "m",
+                    style: TextStyle(color: Color.fromARGB(255, 255, 199, 0))))
+          ])),
+        ),
       RaisedButton(
           child: Text("Back"),
           color: Colors.yellow,
