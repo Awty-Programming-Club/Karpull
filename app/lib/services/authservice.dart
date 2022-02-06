@@ -8,9 +8,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/mainscreen.dart';
 
+// var serverURL = '10.0.2.2';
+var serverURL = 'localhost';
+
 class AuthService {
   login(username, password, context) async {
-    String url = 'http://10.0.2.2:3010/auth/signin';
+    String url = 'http://$serverURL:3010/auth/signin';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map body = {"username": username, "password": password};
     var jsonResponse;
@@ -27,7 +30,7 @@ class AuthService {
   }
 
   createUser(name, username, password, confirm, puller, context) async {
-    String url = 'http://10.0.2.2:3010/auth/create-user';
+    String url = 'http://$serverURL:3010/auth/create-user';
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map body = {
       "name": name,
@@ -46,7 +49,7 @@ class AuthService {
   }
 
   getUser(token) async {
-    String url = 'http://10.0.2.2:3010/user/';
+    String url = 'http://$serverURL:3010/user/';
     var jsonResponse;
     Map<String, String> requestHeaders = {
       "Content-Type": "application/json",
@@ -63,7 +66,7 @@ class AuthService {
   }
 
   setPartner(username, token, context) async {
-    String url = 'http://10.0.2.2:3010/user/set-partner';
+    String url = 'http://$serverURL:3010/user/set-partner';
     var jsonResponse;
     var body = jsonEncode({"username": username});
     Map<String, String> requestHeaders = {
@@ -84,7 +87,7 @@ class AuthService {
   }
 
   sendLocation(token, position) async {
-    String url = 'http://10.0.2.2:3010/user/update-location';
+    String url = 'http://$serverURL:3010/user/update-location';
     var jsonResponse;
     Map<String, String> requestHeaders = {
       "Content-Type": "application/json",

@@ -34,7 +34,6 @@ class _MainScreenState extends State<MainScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
     var response = await AuthService().sendLocation(token, position);
-    print(response);
     setState(() {
       here = response['here'];
     });
