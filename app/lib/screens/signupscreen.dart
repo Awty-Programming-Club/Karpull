@@ -23,28 +23,72 @@ class _SignupScreenState extends State<SignupScreen> {
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-          TextField(
-              decoration: InputDecoration(labelText: 'Name'),
-              onChanged: (val) {
-                name = val;
-              }),
-          TextField(
-              decoration: InputDecoration(labelText: 'Username'),
-              onChanged: (val) {
-                username = val;
-              }),
-          TextField(
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-              onChanged: (val) {
-                password = val;
-              }),
-          TextField(
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Confirm Password'),
-              onChanged: (val) {
-                confirm = val;
-              }),
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextField(
+                  decoration: InputDecoration(
+                      labelText: 'Name',
+                      border: OutlineInputBorder(),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                  onChanged: (val) {
+                    name = val;
+                  }),
+            ),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextField(
+                  decoration: InputDecoration(
+                      labelText: 'Username',
+                      border: OutlineInputBorder(),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                  onChanged: (val) {
+                    username = val;
+                  }),
+            ),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                  onChanged: (val) {
+                    password = val;
+                  }),
+            ),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      border: OutlineInputBorder(),
+                      labelStyle:
+                          TextStyle(color: Color.fromARGB(255, 255, 199, 0))),
+                  onChanged: (val) {
+                    confirm = val;
+                  }),
+            ),
+          ),
           Switch(
             value: puller,
             onChanged: (value) {
