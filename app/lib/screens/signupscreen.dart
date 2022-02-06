@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:karpull/screens/loginscreen.dart';
 
@@ -15,7 +15,7 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   var name, username, password, confirm, token;
-  double puller = 0;
+  bool puller = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +40,20 @@ class _SignupScreenState extends State<SignupScreen> {
                 password = val;
               }),
           TextField(
+              obscureText: true,
               decoration: InputDecoration(labelText: 'Confirm Password'),
               onChanged: (val) {
                 confirm = val;
               }),
-          Slider(
-            min: 0,
-            max: 1,
+          Switch(
             value: puller,
             onChanged: (value) {
               setState(() {
                 puller = value;
               });
             },
+            activeTrackColor: Colors.lightGreenAccent,
+            activeColor: Colors.green,
           ),
           SizedBox(height: 10.0),
           RaisedButton(
@@ -60,10 +61,12 @@ class _SignupScreenState extends State<SignupScreen> {
             color: Colors.yellow,
             onPressed: () {
               AuthService()
-                  .createUser(name, username, password, confirm, puller)
-                  .then((val) {
+                  .createUser(name, username, password, confirm, puller, context)
+                  .then((val) async {
                 if (val.data['success']) {
                   token = val.data['token'];
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('token', token);
                   Fluttertoast.showToast(
                       msg: 'Logged In',
                       toastLength: Toast.LENGTH_SHORT,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:karpull/screens/mainscreen.dart';
 import 'package:karpull/screens/signupscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:karpull/services/authservice.dart';
 
@@ -36,9 +38,11 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Text('Log In'),
             color: Colors.yellow,
             onPressed: () {
-              AuthService().login(username, password).then((val) {
+              AuthService().login(username, password, context).then((val) async {
                 if (val.data['success']) {
                   token = val.data['token'];
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setString('token', token);
                   Fluttertoast.showToast(
                       msg: 'Logged In',
                       toastLength: Toast.LENGTH_SHORT,

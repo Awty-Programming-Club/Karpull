@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:karpull/screens/loginscreen.dart';
+import 'package:karpull/screens/mainscreen.dart';
 // import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Karpull',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginScreen(),
-    );
-  }
+      return MaterialApp (
+        title: 'Account',
+        theme: ThemeData(
+          primarySwatch: Colors.yellow,
+        ),
+        home: LoginScreen(),
+      );
+    }
 }
