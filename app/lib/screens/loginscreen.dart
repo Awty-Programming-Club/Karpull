@@ -22,46 +22,73 @@ class _LoginScreenState extends State<LoginScreen> {
         body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-          TextField(
-              decoration: InputDecoration(labelText: 'Username'),
-              onChanged: (val) {
-                username = val;
-              }),
-          TextField(
-              obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
-              onChanged: (val) {
-                password = val;
-              }),
-          SizedBox(height: 10.0),
-          RaisedButton(
-            child: Text('Log In'),
-            color: Colors.yellow,
-            onPressed: () {
-              AuthService().login(username, password, context).then((val) async {
-                // if (val.data['success']) {
-                //   token = val.data['token'];
-                //   final prefs = await SharedPreferences.getInstance();
-                //   prefs.setString('token', token);
-                //   Fluttertoast.showToast(
-                //       msg: 'Logged In',
-                //       toastLength: Toast.LENGTH_SHORT,
-                //       gravity: ToastGravity.BOTTOM,
-                //       timeInSecForIosWeb: 1,
-                //       backgroundColor: Colors.green,
-                //       textColor: Colors.white,
-                //       fontSize: 16.0);
-                // }
-              });
-            },
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: TextField(
+                    textAlign: TextAlign.center,
+                  decoration: InputDecoration(labelText: 'Username', border: OutlineInputBorder(), fillColor: Color.fromARGB(255, 56, 47, 14)),
+                  onChanged: (val) {
+                    username = val;
+                  }),
+            ),
           ),
-          RaisedButton(
-            child: Text('Sign Up'),
-            color: Colors.yellow,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignupScreen()));
-            },
+          Center(
+            child: Container(
+              margin: EdgeInsets.all(5.0),
+              decoration: BoxDecoration(color: Color.fromARGB(255, 56, 47, 14)),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: Center(
+                child: TextField(
+                    textAlign: TextAlign.center,
+                    obscureText: true,
+                    decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+                    onChanged: (val) {
+                      password = val;
+                    }),
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0),
+          Container(
+            margin: EdgeInsets.all(50.0),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: RaisedButton(
+              child: Text('Log In'),
+              color: Color.fromARGB(255, 255, 199, 0),
+              onPressed: () {
+                AuthService()
+                    .login(username, password, context)
+                    .then((val) async {
+                  // if (val.data['success']) {
+                  //   token = val.data['token'];
+                  //   final prefs = await SharedPreferences.getInstance();
+                  //   prefs.setString('token', token);
+                  //   Fluttertoast.showToast(
+                  //       msg: 'Logged In',
+                  //       toastLength: Toast.LENGTH_SHORT,
+                  //       gravity: ToastGravity.BOTTOM,
+                  //       timeInSecForIosWeb: 1,
+                  //       backgroundColor: Colors.green,
+                  //       textColor: Colors.white,
+                  //       fontSize: 16.0);
+                  // }
+                });
+              },
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: RaisedButton(
+              child: Text('Sign Up'),
+              color: Color.fromARGB(255, 255, 199, 0),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SignupScreen()));
+              },
+            ),
           )
         ]));
   }
