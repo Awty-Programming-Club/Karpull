@@ -89,47 +89,58 @@ class _SignupScreenState extends State<SignupScreen> {
                   }),
             ),
           ),
-          Switch(
-            value: puller,
-            onChanged: (value) {
-              setState(() {
-                puller = value;
-              });
-            },
-            activeTrackColor: Colors.lightGreenAccent,
-            activeColor: Colors.green,
+          Container(
+            margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+            child: Switch(
+              value: puller,
+              onChanged: (value) {
+                setState(() {
+                  puller = value;
+                });
+              },
+              activeTrackColor: Colors.lightGreenAccent,
+              activeColor: Colors.green,
+            ),
           ),
           SizedBox(height: 10.0),
-          RaisedButton(
-            child: Text('Create Account'),
-            color: Colors.yellow,
-            onPressed: () {
-              AuthService().createUser(
-                  name, username, password, confirm, puller, context);
-              // .then((val) async {
-              // if (val.data['success']) {
-              //   token = val.data['token'];
-              //   final prefs = await SharedPreferences.getInstance();
-              //   prefs.setString('token', token);
-              //   Fluttertoast.showToast(
-              //       msg: 'Logged In',
-              //       toastLength: Toast.LENGTH_SHORT,
-              //       gravity: ToastGravity.BOTTOM,
-              //       timeInSecForIosWeb: 1,
-              //       backgroundColor: Colors.green,
-              //       textColor: Colors.white,
-              //       fontSize: 16.0);
-              // }
-              // }
-            },
+          Container(
+            margin: EdgeInsets.all(25.0),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: RaisedButton(
+              child: Text('Create Account'),
+              color: Color.fromARGB(255, 255, 199, 0),
+              onPressed: () {
+                AuthService().createUser(
+                    name, username, password, confirm, puller, context);
+                // .then((val) async {
+                // if (val.data['success']) {
+                //   token = val.data['token'];
+                //   final prefs = await SharedPreferences.getInstance();
+                //   prefs.setString('token', token);
+                //   Fluttertoast.showToast(
+                //       msg: 'Logged In',
+                //       toastLength: Toast.LENGTH_SHORT,
+                //       gravity: ToastGravity.BOTTOM,
+                //       timeInSecForIosWeb: 1,
+                //       backgroundColor: Colors.green,
+                //       textColor: Colors.white,
+                //       fontSize: 16.0);
+                // }
+                // }
+              },
+            ),
           ),
-          RaisedButton(
-            child: Text('Log In'),
-            color: Colors.yellow,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()));
-            },
+          Container(
+            margin: EdgeInsets.all(25),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: RaisedButton(
+              child: Text('Log In'),
+              color: Color.fromARGB(255, 255, 199, 0),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              },
+            ),
           )
         ]));
   }
