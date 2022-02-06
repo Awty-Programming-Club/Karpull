@@ -4,23 +4,25 @@ const passport = require('passport')
 
 const functions = {
     addNew: function (req, res) {
-        if((!req.body.name) || (!req.body.username) || (!req.body.password) || (!req.body.confirm) || (!req.body.puller)) {
-            return res.json({success: false, msg: 'Enter all fields'})
+        if((!req.body.name) || (!req.body.username) || (!req.body.password) || (!req.body.confirm)) {
+        // if((!req.body.name) || (!req.body.username) || (!req.body.password) || (!req.body.confirm) || (req.body.puller != (false || true))) {
+            return res.status(406).json({success: false, msg: 'Enter all fields'})
         }
         if(req.body.password != req.body.confirm){
-            return res.json({success: false, msg: "Password and confirm don't match"})
+            return res.status(406).json({success: false, msg: "Password and confirm don't match"})
         }
+
         const newUser = User({
             name: req.body.name,
             username: req.body.username,
             password: req.body.password,
-            puller: req.body.puller
+            puller: false
         })
         newUser.save(function (err, newUser) {
             if(err) {
-                return res.json({success: false, msg: 'Failed to save'})
+                return res.status(406).json({success: false, msg: 'Failed to save'})
             }
-            return res.json({success: true, msg: 'Successfully saved'})
+            return res.status(200).json({success: true, msg: 'Successfully saved'})
         })
     },
 

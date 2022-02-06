@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const passport = require('passport')
 const connectDB = require('./config/db')
-const session  = require('express-session')
 
 require('dotenv').config()
 const user = require('./routes/user')

@@ -32,7 +32,11 @@ const userSchema = new Schema({
         type: String
     },
     here: {
-        type: Boolean
+        type: Boolean,
+        default: false
+    },
+    distance: {
+        type: Number
     }
 })
 
